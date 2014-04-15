@@ -51,9 +51,17 @@ public class UserView extends JFrame{
 	}
 	
 	public void homePageSelector(int type) {
-		if(type == 0) 		 { 	pHomeP = new PatientHomePanel();	changePanel(pHomeP); }
-		else if(type == 1)   {	dHomeP = new DoctorHomePanel();		changePanel(dHomeP); }
-		else 				 {	aHomeP = new AdminHomePanel();		changePanel(aHomeP); }
+		if(type != 2) {
+			int unread = 0;
+			//TODO: Get # of unread msg from dbc
+			if(type == 0) {
+				pHomeP = new PatientHomePanel(unread);	changePanel(pHomeP);
+			} else if(type == 1) {
+				dHomeP = new DoctorHomePanel(unread);   changePanel(dHomeP); 
+			}
+		} else {
+			aHomeP = new AdminHomePanel();		changePanel(aHomeP);
+		}
 	}
 	
 	public void creationPageSelector(int type) {
@@ -80,6 +88,21 @@ public class UserView extends JFrame{
 		JOptionPane.showMessageDialog(p, m, "Alert", JOptionPane.CLOSED_OPTION, new ImageIcon("drBuzzTiny.jpg"));
 	}
 	
+	public JPanel drBuzzTitle(String head) {
+		JPanel title = new JPanel();
+		title.setBackground(Color.WHITE);
+		title.setLayout(new BoxLayout(title, BoxLayout.Y_AXIS));
+		title.add(Box.createRigidArea(new Dimension(0, 45)));
+		JLabel h = new JLabel(head + "                              ");
+		h.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		title.add(h);
+		title.add(Box.createRigidArea(new Dimension(0, 20)));
+		JLabel b = new JLabel(drBuzz);
+		b.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		title.add(b);
+		return title;
+	}
+	
 	private class WelcomePanel extends JPanel {
 		private JLabel title;
 		private JButton newUserB;
@@ -89,7 +112,7 @@ public class UserView extends JFrame{
 			setLayout(new BorderLayout());
 			setBackground(Color.WHITE);
 			
-			title = new JLabel(drBuzz);
+			title = new JLabel(drBuzz, JLabel.CENTER);
 			newUserB = new JButton("New User");
 			newUserB.addActionListener(new NewUserBListener());
 			loginB = new JButton("Login");
@@ -162,8 +185,8 @@ public class UserView extends JFrame{
 			JButton confirm = new JButton("Register");
 			confirm.setAlignmentX(Component.LEFT_ALIGNMENT);
 			confirm.addActionListener(new RegisterBListener());
-			
-			input.add(Box.createRigidArea(new Dimension(0, 150)));
+
+			input.add(Box.createRigidArea(new Dimension(20, 150)));
 			input.add(new JLabel("Username: "));
 			input.add(username);
 			input.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -178,11 +201,13 @@ public class UserView extends JFrame{
 			input.add(Box.createRigidArea(new Dimension(0, 20)));
 			input.add(confirm);
 			input.add(Box.createRigidArea(new Dimension(0, 150)));
-
+			
+			JPanel title = drBuzzTitle("User Registration");
+			
 			add(Box.createRigidArea(new Dimension(30, 0)), BorderLayout.WEST);
 			add(Box.createRigidArea(new Dimension(40, 0)), BorderLayout.EAST);
 			add(input, BorderLayout.CENTER);
-			add(new JLabel(drBuzz), BorderLayout.WEST);
+			add(title, BorderLayout.WEST);
 		}
 		
 		private class RegisterBListener implements ActionListener {
@@ -209,11 +234,193 @@ public class UserView extends JFrame{
 	}
 	
 	private class PatientHomePanel extends JPanel {
+		private JButton makeAppt;
+		private JButton vVisitHist;
+		private JButton orderMed;
+		private JButton communicate;
+		private JButton unreadMsg;
+		private JButton rateDoctor;
+		private JButton editProfile;
+
+		public PatientHomePanel() {
+			this(0);
+		}
 		
+		public PatientHomePanel(int num) {
+			makeAppt = new JButton("Make Appointments");
+			vVisitHist = new JButton("View Visit History");
+			orderMed = new JButton("Order Medication");
+			unreadMsg = new JButton("(" + num + ")" + " Unread Messages");
+			communicate = new JButton("Communicate");
+			rateDoctor = new JButton("Rate a Doctor");
+			editProfile = new JButton("Edit Profile");
+			constructPanel();
+		}
+		
+		public void constructPanel() {
+			setBackground(Color.WHITE);
+			setLayout(new BorderLayout());
+			
+			makeAppt.addActionListener(new MakeApptListener());
+			vVisitHist.addActionListener(new VisitHistoryListener());
+			orderMed.addActionListener(new OrderMedListener());
+			unreadMsg.addActionListener(new UnreadMsgListener());
+			communicate.addActionListener(new CommunicateListener());
+			rateDoctor.addActionListener(new RateDoctorListener());
+			editProfile.addActionListener(new EditProfListener());
+			
+			JPanel input = new JPanel();
+			input.setBackground(Color.WHITE);
+			input.setLayout(new BoxLayout(input, BoxLayout.Y_AXIS));
+			input.add(Box.createRigidArea(new Dimension(75, 200)));
+			input.add(makeAppt);		input.add(Box.createRigidArea(new Dimension(0, 5)));
+			input.add(vVisitHist);		input.add(Box.createRigidArea(new Dimension(0, 5)));
+			input.add(orderMed);		input.add(Box.createRigidArea(new Dimension(0, 5)));
+			input.add(unreadMsg);		input.add(Box.createRigidArea(new Dimension(0, 5)));
+			input.add(communicate);		input.add(Box.createRigidArea(new Dimension(0, 5)));
+			input.add(rateDoctor);		input.add(Box.createRigidArea(new Dimension(0, 5)));
+			input.add(editProfile);		input.add(Box.createRigidArea(new Dimension(0, 5)));
+			input.add(Box.createRigidArea(new Dimension(0, 10)));
+			
+			JPanel title = drBuzzTitle("Patient Homepage");
+			
+			add(Box.createRigidArea(new Dimension(30, 0)), BorderLayout.WEST);
+			add(Box.createRigidArea(new Dimension(40, 0)), BorderLayout.EAST);
+			add(input, BorderLayout.CENTER);
+			add(title, BorderLayout.WEST);
+		}
+		
+		private class MakeApptListener implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			}
+		}
+		
+		private class VisitHistoryListener implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			}
+		}
+		
+		private class OrderMedListener implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			}
+		}
+		
+		private class UnreadMsgListener implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			}
+		}
+		
+		private class CommunicateListener implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			}
+		}
+		
+		private class RateDoctorListener implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			}
+		}
+		
+		private class EditProfListener implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			}
+		}
 	}
 	
 	private class DoctorHomePanel extends JPanel {
+		private JButton viewApptCal;
+		private JButton patientVisits;
+		private JButton recordSurgery;
+		private JButton communicate;
+		private JButton unreadMsg;
+		private JButton editProfile;
+
+		public DoctorHomePanel() {
+			this(0);
+		}
 		
+		public DoctorHomePanel(int num) {
+			viewApptCal = new JButton("View Appointment Calendar");
+			patientVisits = new JButton("Patient Visits");
+			recordSurgery = new JButton("Record a Surgery");
+			unreadMsg = new JButton("(" + num + ")" + " Unread Messages");
+			communicate = new JButton("Communicate");
+			editProfile = new JButton("Edit Profile");
+			constructPanel();
+		}
+		
+		public void constructPanel() {
+			setBackground(Color.WHITE);
+			setLayout(new BorderLayout());
+			
+			viewApptCal.addActionListener(new ViewApptCalListener());
+			patientVisits.addActionListener(new PatientVisitsListener());
+			recordSurgery.addActionListener(new RecordSurgeryListener());
+			unreadMsg.addActionListener(new UnreadMsgListener());
+			communicate.addActionListener(new CommunicateListener());
+			editProfile.addActionListener(new EditProfListener());
+			
+			JPanel input = new JPanel();
+			input.setBackground(Color.WHITE);
+			input.setLayout(new BoxLayout(input, BoxLayout.Y_AXIS));
+			input.add(Box.createRigidArea(new Dimension(75, 200)));
+			input.add(viewApptCal);		input.add(Box.createRigidArea(new Dimension(0, 5)));
+			input.add(patientVisits);	input.add(Box.createRigidArea(new Dimension(0, 5)));
+			input.add(recordSurgery);	input.add(Box.createRigidArea(new Dimension(0, 5)));
+			input.add(unreadMsg);		input.add(Box.createRigidArea(new Dimension(0, 5)));
+			input.add(communicate);		input.add(Box.createRigidArea(new Dimension(0, 5)));
+			input.add(editProfile);		input.add(Box.createRigidArea(new Dimension(0, 5)));
+			input.add(Box.createRigidArea(new Dimension(0, 10)));
+			
+			JPanel title = drBuzzTitle("Doctor Homepage");
+			
+			add(Box.createRigidArea(new Dimension(30, 0)), BorderLayout.WEST);
+			add(Box.createRigidArea(new Dimension(40, 0)), BorderLayout.EAST);
+			add(input, BorderLayout.CENTER);
+			add(title, BorderLayout.WEST);
+		}
+		
+		private class ViewApptCalListener implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			}
+		}
+		
+		private class PatientVisitsListener implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			}
+		}
+		
+		private class RecordSurgeryListener implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			}
+		}
+		
+		private class UnreadMsgListener implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			}
+		}
+		
+		private class CommunicateListener implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			}
+		}
+		
+		private class EditProfListener implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			}
+		}
 	}
 
 	private class CreatePatientPanel extends JPanel {
@@ -229,27 +436,47 @@ public class UserView extends JFrame{
 		private JTextField allergies;
 		private JButton submit;
 		
-		
 		public CreatePatientPanel() {
+			this("", "", "Male", "", "", "", "", "", "0 - 25000", "");
+		}
+		
+		public CreatePatientPanel(String name, String dob, String gender, String address, String homePhone, String workPhone, String weight, String height, String income, String allergies) {
+			this.name = new JTextField(name, 20);
+			this.dob = new JTextField(dob, 20);
+			this.gender = new JComboBox(new String[]{"Male", "Female"});
+			this.gender.setSelectedItem(gender);
+			this.address = new JTextField(address, 20);
+			this.homePhone = new JTextField(homePhone, 20);
+			this.workPhone = new JTextField(workPhone, 20);
+			this.weight = new JTextField(weight, 20);
+			this.height = new JTextField(height, 20);
+			this.income = new JComboBox(new String[]{"100000+", "50000 - 100000", "25000 - 50000", "0 - 25000"});
+			this.income.setSelectedItem(income);
+			this.allergies = new JTextField(allergies, 20);
+			submit = new JButton("Submit");
+			constructPanel();
+		}
+		
+		private void constructPanel() {
 			setBackground(Color.WHITE);
 			setLayout(new BorderLayout());
+			
+			name.setAlignmentX(Component.LEFT_ALIGNMENT);
+			dob.setAlignmentX(Component.LEFT_ALIGNMENT);
+			gender.setAlignmentX(Component.LEFT_ALIGNMENT);
+			address.setAlignmentX(Component.LEFT_ALIGNMENT);
+			homePhone.setAlignmentX(Component.LEFT_ALIGNMENT);
+			workPhone.setAlignmentX(Component.LEFT_ALIGNMENT);
+			weight.setAlignmentX(Component.LEFT_ALIGNMENT);
+			height.setAlignmentX(Component.LEFT_ALIGNMENT);
+			income.setAlignmentX(Component.LEFT_ALIGNMENT);
+			allergies.setAlignmentX(Component.LEFT_ALIGNMENT);
+			submit.addActionListener(new SubmitBListener());
 			
 			JPanel input = new JPanel();
 			input.setBackground(Color.WHITE);
 			input.setLayout(new BoxLayout(input, BoxLayout.Y_AXIS));
-			name = new JTextField(20);								name.setAlignmentX(Component.LEFT_ALIGNMENT);
-			dob = new JTextField(20);								dob.setAlignmentX(Component.LEFT_ALIGNMENT);
-			gender = new JComboBox(new String[]{"Male", "Female"});	gender.setAlignmentX(Component.LEFT_ALIGNMENT);
-			address = new JTextField(20);							address.setAlignmentX(Component.LEFT_ALIGNMENT);
-			homePhone = new JTextField(20);							homePhone.setAlignmentX(Component.LEFT_ALIGNMENT);
-			workPhone = new JTextField(20);							workPhone.setAlignmentX(Component.LEFT_ALIGNMENT);
-			weight = new JTextField(20);							weight.setAlignmentX(Component.LEFT_ALIGNMENT);
-			height = new JTextField(20);							height.setAlignmentX(Component.LEFT_ALIGNMENT);
-			income = new JComboBox(new String[]{"100000+", "50000 - 100000", "25000 - 50000", "0 - 25000"});
-			income.setAlignmentX(Component.LEFT_ALIGNMENT);
-			allergies = new JTextField(20);							allergies.setAlignmentX(Component.LEFT_ALIGNMENT);
-			JButton submit = new JButton("Submit");					submit.addActionListener(new SubmitBListener());
-			input.add(Box.createRigidArea(new Dimension(0, 10)));
+			input.add(Box.createRigidArea(new Dimension(20, 10)));
 			input.add(new JLabel("Patient Name: "));					input.add(name);		input.add(Box.createRigidArea(new Dimension(0, 5)));
 			input.add(new JLabel("Date of Birth: "));					input.add(dob);			input.add(Box.createRigidArea(new Dimension(0, 5)));
 			input.add(new JLabel("Gender: "));							input.add(gender);		input.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -262,10 +489,13 @@ public class UserView extends JFrame{
 			input.add(new JLabel("Allergies (dairy, pollen, ...):"));	input.add(allergies);	input.add(Box.createRigidArea(new Dimension(0, 5)));
 			input.add(submit);
 			input.add(Box.createRigidArea(new Dimension(0, 10)));
+			
+			JPanel title = drBuzzTitle("Patient Profile");
+			
 			add(Box.createRigidArea(new Dimension(30, 0)), BorderLayout.WEST);
 			add(Box.createRigidArea(new Dimension(40, 0)), BorderLayout.EAST);
 			add(input, BorderLayout.CENTER);
-			add(new JLabel(drBuzz), BorderLayout.WEST);
+			add(title, BorderLayout.WEST);
 		}
 		
 		private class SubmitBListener implements ActionListener {
@@ -277,10 +507,9 @@ public class UserView extends JFrame{
 				//Regex checks for fields?
 				else {
 					boolean check = false;
-					// TODO: Send information to dbc and check uniqueness of homePhone and name
+					// TODO: Send information to dbc and update corresponding patient tuple
 					check = true;
-					pHomeP = new PatientHomePanel();
-					if(check) changePanel(pHomeP);
+					if(check) homePageSelector(0);
 				}
 			}
 		}
@@ -300,24 +529,43 @@ public class UserView extends JFrame{
 		
 		
 		public CreateDoctorPanel() {
+			this("", "", "", "", "", "General Physician", "", "", "");
+		}
+		
+		public CreateDoctorPanel(String license, String firstName, String lastName, String dob, String workPhone, String speciality, String roomNo, String homeAddress, String availability) {
+			this.license = new JTextField(license, 20);
+			this.firstName = new JTextField(firstName, 20);
+			this.lastName = new JTextField(lastName, 20);
+			this.dob = new JTextField(dob, 20);
+			this.workPhone = new JTextField(workPhone, 20);
+			this.speciality = new JComboBox(new String[]{"General Physician", "Heart Specialist", "Eye Physician", "Orthopedics", "Psychiatry", "Gynecologist"});
+			this.speciality.setSelectedItem(speciality);
+			this.roomNo = new JTextField(roomNo, 20);
+			this.homeAddress = new JTextField(homeAddress, 20);
+			this.availability = new JTextField(availability, 20);				
+			submit = new JButton("Submit");
+			constructPanel();
+		}
+		
+		public void constructPanel() {
 			setBackground(Color.WHITE);
 			setLayout(new BorderLayout());
+			
+			license.setAlignmentX(Component.LEFT_ALIGNMENT);
+			firstName.setAlignmentX(Component.LEFT_ALIGNMENT);
+			lastName.setAlignmentX(Component.LEFT_ALIGNMENT);
+			dob.setAlignmentX(Component.LEFT_ALIGNMENT);
+			workPhone.setAlignmentX(Component.LEFT_ALIGNMENT);
+			speciality.setAlignmentX(Component.LEFT_ALIGNMENT);
+			roomNo.setAlignmentX(Component.LEFT_ALIGNMENT);
+			homeAddress.setAlignmentX(Component.LEFT_ALIGNMENT);
+			availability.setAlignmentX(Component.LEFT_ALIGNMENT);
+			submit.addActionListener(new SubmitBListener());
 			
 			JPanel input = new JPanel();
 			input.setBackground(Color.WHITE);
 			input.setLayout(new BoxLayout(input, BoxLayout.Y_AXIS));
-			license = new JTextField(20);							license.setAlignmentX(Component.LEFT_ALIGNMENT);
-			firstName = new JTextField(20);							firstName.setAlignmentX(Component.LEFT_ALIGNMENT);
-			lastName = new JTextField(20);							lastName.setAlignmentX(Component.LEFT_ALIGNMENT);
-			dob = new JTextField(20);								dob.setAlignmentX(Component.LEFT_ALIGNMENT);
-			workPhone = new JTextField(20);							workPhone.setAlignmentX(Component.LEFT_ALIGNMENT);
-			speciality = new JComboBox(new String[]{"General Physician", "Heart Specialist", "Eye Physician", "Orthopedics", "Psychiatry", "Gynecologist"}); speciality.setAlignmentX(Component.LEFT_ALIGNMENT);
-			roomNo = new JTextField(20);							roomNo.setAlignmentX(Component.LEFT_ALIGNMENT);
-			homeAddress = new JTextField(20);						homeAddress.setAlignmentX(Component.LEFT_ALIGNMENT);
-			availability = new JTextField(20);						availability.setAlignmentX(Component.LEFT_ALIGNMENT);
-			JButton submit = new JButton("Submit");					submit.addActionListener(new SubmitBListener());
-			
-			input.add(Box.createRigidArea(new Dimension(0, 20)));
+			input.add(Box.createRigidArea(new Dimension(20, 20)));
 			input.add(new JLabel("License Number: "));					input.add(license);		input.add(Box.createRigidArea(new Dimension(0, 5)));
 			input.add(new JLabel("First Name: "));						input.add(firstName);	input.add(Box.createRigidArea(new Dimension(0, 5)));
 			input.add(new JLabel("Last Name: "));						input.add(lastName);	input.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -327,14 +575,15 @@ public class UserView extends JFrame{
 			input.add(new JLabel("Room Number:"));						input.add(roomNo);		input.add(Box.createRigidArea(new Dimension(0, 5)));
 			input.add(new JLabel("Home Address:"));						input.add(homeAddress);	input.add(Box.createRigidArea(new Dimension(0, 5)));
 			input.add(new JLabel("Availability (Day [0:00-0:00], Day[0:00-0:00], ...):"));	input.add(availability);	input.add(Box.createRigidArea(new Dimension(0, 5)));
-			//Change to JSpinners?
 			input.add(submit);
-			
 			input.add(Box.createRigidArea(new Dimension(0, 10)));
+			
+			JPanel title = drBuzzTitle("Doctor Profile");
+			
 			add(Box.createRigidArea(new Dimension(30, 0)), BorderLayout.WEST);
 			add(Box.createRigidArea(new Dimension(40, 0)), BorderLayout.EAST);
 			add(input, BorderLayout.CENTER);
-			add(new JLabel(drBuzz), BorderLayout.WEST);
+			add(title, BorderLayout.WEST);
 		}
 		
 		private class SubmitBListener implements ActionListener {
@@ -346,10 +595,9 @@ public class UserView extends JFrame{
 				//Regex checks for fields?
 				else {
 					boolean check = false;
-					// TODO: Send information to dbc and check uniqueness of homePhone and name
+					// TODO: Send information to dbc and update corresponding doctor tuple
 					check = true;
-					dHomeP = new DoctorHomePanel();
-					if(check) changePanel(dHomeP);
+					if(check) homePageSelector(1);
 				}
 			}
 		}
