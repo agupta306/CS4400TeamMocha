@@ -72,7 +72,7 @@ public class UserView extends JFrame{
 
 	public void changePanel(JPanel p) {
 		setContentPane(p);
-		revalidate();
+		p.revalidate();
 	}
 	
 	public void startDBC() {

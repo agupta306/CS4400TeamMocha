@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 /**
  * Connection to CS4400 Group 1 database
- * Sends and recevies information using embedded SQL queries 
+ * Sends and receives information using embedded SQL queries 
  * @author Ashutosh Gupta
  */
 public class DBConnector {
