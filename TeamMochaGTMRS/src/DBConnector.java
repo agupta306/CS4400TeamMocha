@@ -9,6 +9,8 @@ import java.sql.SQLException;
  */
 public class DBConnector {
 	
+	private static Connection conn;
+	
 	public DBConnector() throws SQLException{
         //Test JDBC MySQL driver on this machine
         try {
@@ -26,7 +28,11 @@ public class DBConnector {
 
         System.out.println("Logging into CS4400_Group_1 database via JDBC");
         String url = "jdbc:mysql://" + hostIP + "/" + dbUser;       //The database name happens to match our username
-        Connection conn = DriverManager.getConnection(url, dbUser, dbPass);
+        conn = DriverManager.getConnection(url, dbUser, dbPass);
         System.out.println("Connection successfuly established. Standing by.");
     }
+	
+	public Connection getConnection() {
+		return conn;
+	}
 }
