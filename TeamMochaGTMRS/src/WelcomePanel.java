@@ -66,7 +66,7 @@ public class WelcomePanel extends JPanel {
 				int check = -1;
 				// TODO: Send queries to dbc to confirm username/password
 				// TODO: Retrieve type of user (0 - patient, 1 - doctor, 2 - admin, -1 - error)
-				check = 1;
+				check = 0;
 				if(check == -1)
 					parent.errorMessage("Incorrect Username/Password. Please try again.");
 				else {

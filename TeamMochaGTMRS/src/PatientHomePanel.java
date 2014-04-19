@@ -67,7 +67,9 @@ public class PatientHomePanel extends JPanel {
 	}
 
 	private class UnreadMsgListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {}
+		public void actionPerformed(ActionEvent e) {
+			parent.changePanel(new MessagesPanel(parent, 0));
+		}
 	}
 
 	private class RateDoctorListener implements ActionListener{
