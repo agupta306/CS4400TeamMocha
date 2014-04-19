@@ -1,19 +1,27 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class MakeApptPanel extends JPanel{
-	/*private UserView parent;
+	private UserView parent;
 	private JComboBox specialtyCB;
 	private JButton searchB;
-	private MakeApptTableModel makeApptTModel;
-		private JTable makeApptTable;
-		private JButton requestB;
-		
-		public MakeApptPanel() {
-			setBackground(Color.WHITE);
-			setLayout(new BorderLayout());
-			JPanel buzz = drBuzzBanner("Schedule an Appointment");
+	private MakeApptTableModel tableModel;
+	private JTable makeApptTable;
+	private JButton requestB;
+	
+	public MakeApptPanel(UserView p) {
+		parent = p;
+		setLayout(new BorderLayout());
+		setBackground(Color.WHITE);
 		
 		specialtyCB = new JComboBox(new String[]{"General Physician", "Heart Specialist", "Eye Physician", "Orthopedics", "Psychiatry", "Gynecologist"});
 		specialtyCB.setSelectedIndex(0);
@@ -27,34 +35,29 @@ public class MakeApptPanel extends JPanel{
 				{"Dr. C", "321-432-3421", "321", "Tuesday: 8:30 - 4:00", Boolean.FALSE, "3"},
 				{"Dr. D", "234-432-3122", "333", "Friday: 9:30 - 5:00", Boolean.FALSE, "2"},
 		};
-		makeApptTModel = new MakeApptTableModel();
-		makeApptTModel.setData(initData);
-		makeApptTable = new JTable(makeApptTModel);
-		
+		tableModel = new MakeApptTableModel();
+		tableModel.setData(initData);
+		makeApptTable = new JTable(tableModel);
 		requestB = new JButton("Request Appointments");
 		requestB.addActionListener(new RequestBListener());
 		
-		JPanel input = new JPanel();
-		input.setBackground(Color.WHITE);
-		input.setLayout(new BorderLayout());
-			JPanel searchP = new JPanel();
-			searchP.setLayout(new BoxLayout(searchP, BoxLayout.X_AXIS));
-			searchP.add(specialtyCB);
-			searchP.add(searchB);
-		input.add(searchP, BorderLayout.NORTH);
-			JScrollPane displayDoctors = new JScrollPane(makeApptTable);
-			makeApptTable.setFillsViewportHeight(true);
-		input.add(displayDoctors, BorderLayout.CENTER);
-		input.add(requestB, BorderLayout.SOUTH);
-
-		add(buzz, BorderLayout.NORTH);
-		add(input, BorderLayout.CENTER);
+		JPanel searchP = new JPanel();
+		searchP.setLayout(new BoxLayout(searchP, BoxLayout.X_AXIS));
+		searchP.add(specialtyCB);
+		searchP.add(searchB);
+		
+		JScrollPane displayDoctors = new JScrollPane(makeApptTable);
+		makeApptTable.setFillsViewportHeight(true);
+		
+		add(searchP, BorderLayout.NORTH);
+		add(displayDoctors, BorderLayout.CENTER);
+		add(requestB, BorderLayout.SOUTH);
 	}
 	
 	private class SearchBListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			// Pull information from dbc based on specialtyCB
-			// populate doctorTable rows
+			// populate tableModel rows
 		}
 	}
 	
@@ -65,7 +68,7 @@ public class MakeApptPanel extends JPanel{
 			// else
 			//     Update dbc with appt
 			//     Return to patient homepage
-			homePageSelector(0);
+			parent.goToHomePage(0);
 		}
-	}*/
+	}
 }

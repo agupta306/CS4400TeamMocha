@@ -53,7 +53,7 @@ public class UserView extends JFrame{
 		title.setBackground(Color.WHITE);
 		JLabel b = new JLabel(new ImageIcon("drBuzzTiny.jpg"));
 		title.add(b);
-		JLabel h = new JLabel("          " + head);
+		JLabel h = new JLabel(head);
 		title.add(h);
 		return title;
 	}
@@ -97,76 +97,3 @@ public class UserView extends JFrame{
 	public void setUsername(String u) { username = u; }
 	
 }
-	/*
-	
-
-	private class OrderMedPanel extends JPanel {
-		private JTextField medNameF;
-		private JTextField dosageF;
-		private JTextField durationF;
-		private JTextField doctorF;
-		private JTextField presDateF;
-		private JButton addCartB;
-		private JButton checkoutB;
-		
-		public OrderMedPanel() {
-			setBackground(Color.WHITE);
-			setLayout(new BorderLayout());
-			JPanel buzz = drBuzzTitle("Order Medications");
-			
-			medNameF = new JTextField();
-			dosageF = new JTextField();
-			durationF = new JTextField();
-			doctorF = new JTextField();
-			presDateF = new JTextField();
-			addCartB = new JButton("Add to Cart");
-			addCartB.addActionListener(new AddCartBListener());
-			checkoutB = new JButton("Checkout Cart");
-			checkoutB.addActionListener(new CheckoutBListener());
-			
-			medNameF.setAlignmentX(Component.LEFT_ALIGNMENT);
-			dosageF.setAlignmentX(Component.LEFT_ALIGNMENT);
-			durationF.setAlignmentX(Component.LEFT_ALIGNMENT);
-			doctorF.setAlignmentX(Component.LEFT_ALIGNMENT);
-			presDateF.setAlignmentX(Component.LEFT_ALIGNMENT);
-			addCartB.setAlignmentX(Component.LEFT_ALIGNMENT);
-			checkoutB.setAlignmentX(Component.LEFT_ALIGNMENT);
-			
-			JPanel input = new JPanel();
-			input.setBackground(Color.WHITE);
-			input.setLayout(new BoxLayout(input, BoxLayout.Y_AXIS));
-			input.add(Box.createRigidArea(new Dimension(20, 100)));
-			input.add(new JLabel("Medication Name: "));			input.add(medNameF);	input.add(Box.createRigidArea(new Dimension(0, 5)));
-			input.add(new JLabel("Dosage (per day): "));		input.add(dosageF);		input.add(Box.createRigidArea(new Dimension(0, 5)));
-			input.add(new JLabel("Duration (mm/dd): "));		input.add(durationF);	input.add(Box.createRigidArea(new Dimension(0, 5)));
-			input.add(new JLabel("Consulting Doctor: "));		input.add(doctorF);		input.add(Box.createRigidArea(new Dimension(0, 5)));
-			input.add(new JLabel("Date of Prescription: "));	input.add(presDateF);	input.add(Box.createRigidArea(new Dimension(0, 5)));
-			input.add(addCartB);
-			input.add(checkoutB);
-			
-			input.add(Box.createRigidArea(new Dimension(0, 110)));
-			
-			
-			add(buzz, BorderLayout.WEST);
-			add(input, BorderLayout.CENTER);
-		}
-		
-		private class AddCartBListener implements ActionListener {
-			public void actionPerformed(ActionEvent e) {
-				//Try to insert order into dbc
-				//if failed, show error message
-				//else, display dialogue confirming addition
-			}
-		}
-		
-		private class CheckoutBListener implements ActionListener {
-			public void actionPerformed(ActionEvent e) {
-				//show dialogue with payment information
-					//if first time, have editable textfields and store info to dbc
-					//else, just display text
-				//if confirmed, send information to dbc and changePanel back to patient homepage
-			}
-		}
-	}
-}
-	*/
