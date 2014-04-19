@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class ViewVisitHistoryPanel extends JPanel{
 	private UserView parent;
+	private ViewPatientVisitsPanel p;
 	private JComboBox datesOfVisitsCB;
 	private JLabel bp;
 	private JLabel diagnosis;
@@ -49,6 +50,31 @@ public class ViewVisitHistoryPanel extends JPanel{
 		add(returnB);
 	}
 	
+	public ViewVisitHistoryPanel(ViewPatientVisitsPanel p) {
+		this.p = p;
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setBackground(Color.WHITE);
+		
+		//TODO: Populate datesOfVisitsCB with past dates from dbc
+		datesOfVisitsCB = new JComboBox(new String[]{"09/22/12", "10/23/12", "3/29/14"});
+		datesOfVisitsCB.addActionListener(new DateChangeListener());
+		datesOfVisitsCB.setAlignmentX(Component.LEFT_ALIGNMENT);
+		bp = new JLabel();			bp.setAlignmentX(Component.LEFT_ALIGNMENT);
+		diagnosis = new JLabel();	diagnosis.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+		m = new DefaultTableModel();
+		medPresT = new JTable(m);
+		
+		updateContents();
+		
+		add(new JLabel("Dates of Visits: "));	add(datesOfVisitsCB);
+		add(bp);
+		add(diagnosis);
+		add(new JLabel("Medications Prescribed:"));
+		add(new JScrollPane(medPresT));
+	}
+	
+	//Based on either UserView's username or ViewPatientVisitsPanel's selected patient username
 	public void updateContents() {
 		//TODO: Get diastolic and systolic bp for selected date
 		int sys = 120;

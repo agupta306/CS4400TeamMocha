@@ -19,7 +19,6 @@ public class DoctorHomePanel extends JPanel{
 	private JButton viewApptCalB;
 	private JButton patientVisitsB;
 	private JButton recordSurgeryB;
-	private JButton communicateB;
 	private JButton unreadMsgsB;
 	private JButton editProfileB;
 	
@@ -29,39 +28,39 @@ public class DoctorHomePanel extends JPanel{
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBackground(Color.WHITE);
 		
-		viewApptCalB = new JButton("View Appointment Calendar");		viewApptCalB.addActionListener(new ViewApptCalListener());
-		patientVisitsB = new JButton("Patient Visits");					patientVisitsB.addActionListener(new PatientVisitsListener());
-		recordSurgeryB = new JButton("Record a Surgery");				recordSurgeryB.addActionListener(new RecordSurgeryListener());
-		unreadMsgsB = new JButton("(" + u + ")" + " Unread Messages");	unreadMsgsB.addActionListener(new UnreadMsgListener());
-		communicateB = new JButton("Communicate");						communicateB.addActionListener(new CommunicateListener());
-		editProfileB= new JButton("Edit Profile");						editProfileB.addActionListener(new EditProfListener());
+		viewApptCalB = new JButton("View Appointment Calendar");	viewApptCalB.addActionListener(new ViewApptCalListener());
+		patientVisitsB = new JButton("Patient Visits");				patientVisitsB.addActionListener(new PatientVisitsListener());
+		recordSurgeryB = new JButton("Record a Surgery");			recordSurgeryB.addActionListener(new RecordSurgeryListener());
+		unreadMsgsB = new JButton("Messages" + "(" + u + ")");		unreadMsgsB.addActionListener(new UnreadMsgListener());
+		editProfileB= new JButton("Edit Profile");					editProfileB.addActionListener(new EditProfListener());
 
 		add(viewApptCalB);		add(Box.createRigidArea(new Dimension(0, 5)));
 		add(patientVisitsB);	add(Box.createRigidArea(new Dimension(0, 5)));
 		add(recordSurgeryB);	add(Box.createRigidArea(new Dimension(0, 5)));
 		add(unreadMsgsB);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(communicateB);		add(Box.createRigidArea(new Dimension(0, 5)));
 		add(editProfileB);		add(Box.createRigidArea(new Dimension(0, 5)));
 		add(Box.createRigidArea(new Dimension(0, 10)));
 	}
 	
 	private class ViewApptCalListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {}
+		public void actionPerformed(ActionEvent e) {
+			parent.changePanel(new ApptCalPanel(parent));
+		}
 	}
 
 	private class PatientVisitsListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {}
+		public void actionPerformed(ActionEvent e) {
+			parent.changePanel(new ViewPatientVisitsPanel(parent));
+		}
 	}
 
 	private class RecordSurgeryListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {}
+		public void actionPerformed(ActionEvent e) {
+			parent.changePanel(new SurgeryRecordPanel(parent));
+		}
 	}
 
 	private class UnreadMsgListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {}
-	}
-
-	private class CommunicateListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {}
 	}
 

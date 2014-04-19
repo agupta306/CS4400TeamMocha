@@ -45,5 +45,4 @@ public class RateDoctorPanel extends JPanel {
 			parent.goToHomePage(0);
 		}
 	}
-
 }
