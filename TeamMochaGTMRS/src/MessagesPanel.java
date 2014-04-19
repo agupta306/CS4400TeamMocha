@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,26 +21,32 @@ public class MessagesPanel extends JPanel {
 	private JTable inboxTable;
 	private JButton returnB;
 	private JComboBox recepientIn;
-	private JTextField contentIn;
+	private JTextArea contentIn;
 	private JButton sendB;
 	private int docOrP;
 	
 	public MessagesPanel(UserView p, int dP) {
 		docOrP = dP;
 		parent = p;
+		parent.changeHeader("Messages");
 		setLayout(new BorderLayout());
 		setBackground(Color.WHITE);
 		
 		JPanel draftPanel = new JPanel();
 		draftPanel.setLayout(new BoxLayout(draftPanel, BoxLayout.Y_AXIS));
+		draftPanel.setBackground(Color.WHITE);
 		//TODO:Get all possible recepients for this user from dbc
 		String[] people = new String[]{"Dr. A", "Dr. B", "Dr. C"};
 		recepientIn = new JComboBox(people);
-		contentIn = new JTextField();
+		recepientIn.setMaximumSize(recepientIn.getPreferredSize());
+		contentIn = new JTextArea();
+		contentIn.setLineWrap(true);
 		sendB = new JButton("Send Message");
 		sendB.addActionListener(new SendBListener());
 		draftPanel.add(new JLabel("Recepient Name"));	draftPanel.add(recepientIn);
-		draftPanel.add(new JLabel("Message Content"));	draftPanel.add(contentIn);
+		draftPanel.add(new JLabel("Message Content"));	draftPanel.add(new JScrollPane(contentIn));
+		recepientIn.setAlignmentX(LEFT_ALIGNMENT);
+		contentIn.setAlignmentX(LEFT_ALIGNMENT);
 		draftPanel.add(sendB);
 		
 		m = new DefaultTableModel();

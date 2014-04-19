@@ -28,11 +28,13 @@ public class ApptCalPanel extends JPanel {
 	
 	public ApptCalPanel(UserView p) {
 		parent = p;
+		parent.changeHeader("Appointments Calender");
 		setLayout(new BorderLayout());
 		setBackground(Color.WHITE);
 		
 		date = new JTextField(10);
-		date.setSize(10, 5);
+		date.setMaximumSize(date.getPreferredSize());
+		date.setAlignmentX(LEFT_ALIGNMENT);
 		selectB = new JButton("Select");
 		selectB.addActionListener(new SelectDateBListener());
 		returnB = new JButton("Return Home");
@@ -85,12 +87,15 @@ public class ApptCalPanel extends JPanel {
 		while(m.getRowCount() > 0) m.removeRow(0);
 		for(int i = 0; i < mData.length; i++)
 			m.addRow(mData[i]);
+		
 	}
 	
 	private class SelectDateBListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			if(date.getText().length() == 10) {
 				updateTables();
+				monthTable.repaint();
+				dayTable.repaint();
 			} else parent.errorMessage("Date field is empty!");
 		}
 	}

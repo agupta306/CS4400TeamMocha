@@ -1,8 +1,11 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,6 +23,7 @@ public class MakeApptPanel extends JPanel{
 	
 	public MakeApptPanel(UserView p) {
 		parent = p;
+		parent.changeHeader("Schedule Appointments");
 		setLayout(new BorderLayout());
 		setBackground(Color.WHITE);
 		
@@ -38,11 +42,28 @@ public class MakeApptPanel extends JPanel{
 		tableModel = new MakeApptTableModel();
 		tableModel.setData(initData);
 		makeApptTable = new JTable(tableModel);
+		makeApptTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+		makeApptTable.getColumnModel().getColumn(1).setPreferredWidth(50);
+		makeApptTable.getColumnModel().getColumn(2).setPreferredWidth(10);
+		makeApptTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+		makeApptTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+		makeApptTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+		
+		JPanel requestP = new JPanel();
+		requestP.setLayout(new BoxLayout(requestP, BoxLayout.X_AXIS));
+		requestP.setBackground(Color.WHITE);
+		requestP.setPreferredSize(new Dimension(800, 50));
 		requestB = new JButton("Request Appointments");
 		requestB.addActionListener(new RequestBListener());
+		requestP.add(Box.createRigidArea(new Dimension(300, 50)));
+		requestP.add(requestB);
 		
 		JPanel searchP = new JPanel();
+		searchP.setBackground(Color.WHITE);
+		searchP.setPreferredSize(new Dimension(800, 50));
 		searchP.setLayout(new BoxLayout(searchP, BoxLayout.X_AXIS));
+		specialtyCB.setMaximumSize(specialtyCB.getPreferredSize());
+		searchP.add(Box.createRigidArea(new Dimension(250, 50)));
 		searchP.add(specialtyCB);
 		searchP.add(searchB);
 		
@@ -51,7 +72,7 @@ public class MakeApptPanel extends JPanel{
 		
 		add(searchP, BorderLayout.NORTH);
 		add(displayDoctors, BorderLayout.CENTER);
-		add(requestB, BorderLayout.SOUTH);
+		add(requestP, BorderLayout.SOUTH);
 	}
 	
 	private class SearchBListener implements ActionListener {

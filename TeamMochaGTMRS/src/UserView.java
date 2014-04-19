@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -30,16 +31,16 @@ public class UserView extends JFrame{
 	private DBConnector dbc;
 	private JPanel parentPanel;
 	private JPanel contentPanel;
+	private JPanel headPanel;
 	private String username;
 	
 	public UserView(String title) {
 		setPreferredSize(new Dimension(800, 700));
 		setBackground(Color.WHITE);
 		setTitle(title);
-		
 		parentPanel = new JPanel();
 		parentPanel.setLayout(new BorderLayout());
-		parentPanel.add(drBuzzBanner("Welcome to GTMRS"), BorderLayout.NORTH);
+		headPanel = new JPanel();
 		contentPanel = new WelcomePanel(this);
 		parentPanel.add(contentPanel, BorderLayout.CENTER);
 		setContentPane(parentPanel);
@@ -50,12 +51,22 @@ public class UserView extends JFrame{
 	
 	public JPanel drBuzzBanner(String head) {
 		JPanel title = new JPanel();
-		title.setBackground(Color.WHITE);
-		JLabel b = new JLabel(new ImageIcon("drBuzzTiny.jpg"));
+		title.setLayout(new BoxLayout(title, BoxLayout.X_AXIS));
+		title.setSize(new Dimension(800, 50));
+		title.setBackground(new Color(207, 181, 59));
+		JLabel b = new JLabel(new ImageIcon("drBuzz.png"));
 		title.add(b);
+		title.add(Box.createRigidArea(new Dimension(300, 50)));
 		JLabel h = new JLabel(head);
 		title.add(h);
 		return title;
+	}
+	
+	public void changeHeader(String head) {
+		parentPanel.remove(headPanel);
+		headPanel = drBuzzBanner(head);
+		parentPanel.add(headPanel, BorderLayout.NORTH);
+		headPanel.repaint();
 	}
 	
 	public void changePanel(JPanel p) {
@@ -65,7 +76,7 @@ public class UserView extends JFrame{
 		parentPanel.revalidate();
 	}
 
-	public void errorMessage(String m) { JOptionPane.showMessageDialog(this, m, "Alert", JOptionPane.CLOSED_OPTION, new ImageIcon("drBuzzTiny.jpg")); }
+	public void errorMessage(String m) { JOptionPane.showMessageDialog(this, m, "Alert", JOptionPane.CLOSED_OPTION, new ImageIcon("drBuzz.png")); }
 	
 	public void goToHomePage(int type) {
 		if(type != 2) {

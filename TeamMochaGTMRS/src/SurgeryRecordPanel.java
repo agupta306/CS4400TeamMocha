@@ -33,6 +33,7 @@ public class SurgeryRecordPanel extends JPanel {
 	
 	public SurgeryRecordPanel(UserView p) {
 		parent = p;
+		parent.changeHeader("Record a Surgery");
 		setLayout(new BorderLayout());
 		setBackground(Color.WHITE);
 		

@@ -10,54 +10,78 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 
-public class ViewPatientVisitsPanel extends JPanel{
+public class BillingPanel extends JPanel{
 	private UserView parent;
 	private JTextField nameIn;
-	private JTextField phoneIn;
 	private JButton searchB;
 	private PVHistoryTableModel pVHTM;
 	private JTable patientTable;
-	private ViewVisitHistoryPanel v;
 	private JButton viewB;
-	private JButton recordVB;
+	private JPanel billingP;
+	private DefaultTableModel vT;
+	private DefaultTableModel sT;
+	private JTable visitTable;
+	private JTable surgeTable;
+	private JLabel totalCost;
+	private JButton returnB;
 	
-	public ViewPatientVisitsPanel(UserView p) {
+	public BillingPanel(UserView p) {
 		parent = p;
-		parent.changeHeader("View Past Patient Visits");
+		parent.changeHeader("Billing Report");
 		setLayout(new BorderLayout());
 		setBackground(Color.WHITE);
 		
 		nameIn = new JTextField();
-		phoneIn = new JTextField();
 		searchB = new JButton("Search");
 		searchB.addActionListener(new SearchBListener());
 		pVHTM = new PVHistoryTableModel();
 		pVHTM.setData(new Object[][] {{"", "", Boolean.FALSE}});
 		patientTable = new JTable(pVHTM);	
 		viewB = new JButton("View");
-		recordVB = new JButton("Record");
 		viewB.addActionListener(new ViewBListener());
-		recordVB.addActionListener(new RecordVBListener());
 		
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(new BorderLayout());
 			JPanel s = new JPanel();
 			s.setLayout(new BoxLayout(s, BoxLayout.X_AXIS));
 			s.add(new JLabel("Patient:"));	s.add(nameIn);
-			s.add(new JLabel("Phone:"));	s.add(phoneIn);
 			s.add(searchB);
 		searchPanel.add(s, BorderLayout.NORTH);
 		searchPanel.add(new JScrollPane(patientTable), BorderLayout.CENTER);
 			JPanel vr = new JPanel();
 			vr.setLayout(new BoxLayout(vr, BoxLayout.X_AXIS));
 			vr.add(viewB);
-			vr.add(recordVB);
 		searchPanel.add(vr, BorderLayout.SOUTH);
-		v = new ViewVisitHistoryPanel(this);
 		
-		add(v, BorderLayout.CENTER);
+		billingP = new JPanel();
+		billingP.setLayout(new BoxLayout(billingP, BoxLayout.Y_AXIS));
+		
+
+		String [] columnheaderV = new String[] {"Visit Date", "Cost ($)"};
+		String [] columnHeaderS = new String[] {"Surgery Date", "Cost ($)"};
+		
+		vT = new DefaultTableModel();
+		sT = new DefaultTableModel();
+		vT.setColumnIdentifiers(columnheaderV);
+		vT.addRow(new String[] {"11-11-13", "431.45"});
+		sT.setColumnIdentifiers(columnHeaderS);
+		sT.addRow(new String[] {"12-03-12", "503.00"});
+		visitTable = new JTable(vT);
+		surgeTable = new JTable(sT);
+		
+		totalCost = new JLabel("Total Cost: $0.00");
+		
+		billingP.add(new JScrollPane(visitTable));
+		billingP.add(new JScrollPane(surgeTable));
+		billingP.add(totalCost);
+		returnB = new JButton("Return Home");
+		returnB.addActionListener(new ReturnBListener());
+		billingP.add(returnB);
+		
+		add(billingP, BorderLayout.CENTER);
 		add(searchPanel, BorderLayout.WEST);
 	}
 	
@@ -78,13 +102,13 @@ public class ViewPatientVisitsPanel extends JPanel{
 	
 	private class ViewBListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			//TODO: update v panel based on first patient selected in pVHTM
+			//TODO: update billingP tables based on first patient selected in pVHTM
 		}
 	}
 	
-	private class RecordVBListener implements ActionListener {
+	private class ReturnBListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			parent.changePanel(new RecordVisitPanel(parent));
+			parent.goToHomePage(2);
 		}
 	}
 }

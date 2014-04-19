@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,27 +24,37 @@ public class OrderMedPanel extends JPanel{
 	
 	public OrderMedPanel(UserView p) {
 		parent = p;
+		parent.changeHeader("Order Medication");
 		setBackground(Color.WHITE);
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
-		medNameIn = new JTextField();					medNameIn.setAlignmentX(Component.LEFT_ALIGNMENT);
-		dosageIn = new JTextField();					dosageIn.setAlignmentX(Component.LEFT_ALIGNMENT);
-		durationIn = new JTextField();					durationIn.setAlignmentX(Component.LEFT_ALIGNMENT);
-		doctorIn = new JTextField();					doctorIn.setAlignmentX(Component.LEFT_ALIGNMENT);
-		presDateIn = new JTextField();					presDateIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		JPanel input = new JPanel();
+		input.setBackground(Color.WHITE);
+		input.setLayout(new BoxLayout(input, BoxLayout.Y_AXIS));
+		
+		medNameIn = new JTextField(20);					medNameIn.setMaximumSize(medNameIn.getPreferredSize());		medNameIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		dosageIn = new JTextField(20);					dosageIn.setMaximumSize(dosageIn.getPreferredSize());		dosageIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		durationIn = new JTextField(20);				durationIn.setMaximumSize(durationIn.getPreferredSize());	durationIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		doctorIn = new JTextField(20);					doctorIn.setMaximumSize(doctorIn.getPreferredSize());		doctorIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		presDateIn = new JTextField(20);				presDateIn.setMaximumSize(presDateIn.getPreferredSize());	presDateIn.setAlignmentX(Component.LEFT_ALIGNMENT);
 		addCartB = new JButton("Add to Cart");			addCartB.setAlignmentX(Component.LEFT_ALIGNMENT);
-		checkoutB = new JButton("Checkout Cart");		checkoutB.setAlignmentX(Component.LEFT_ALIGNMENT);
+		checkoutB = new JButton("Checkout");			checkoutB.setAlignmentX(Component.LEFT_ALIGNMENT);
 		addCartB.addActionListener(new AddCartBListener());
 		checkoutB.addActionListener(new CheckoutBListener());
 
-		add(new JLabel("Medication Name: "));		add(medNameIn);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(new JLabel("Dosage (per day): "));		add(dosageIn);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(new JLabel("Duration (mm/dd): "));		add(durationIn);	add(Box.createRigidArea(new Dimension(0, 5)));
-		add(new JLabel("Consulting Doctor: "));		add(doctorIn);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(new JLabel("Date of Prescription: "));	add(presDateIn);	add(Box.createRigidArea(new Dimension(0, 5)));
-		add(addCartB);
-		add(checkoutB);
-		add(Box.createRigidArea(new Dimension(0, 110)));
+		input.add(new JLabel("Medication Name: "));			input.add(medNameIn);	input.add(Box.createRigidArea(new Dimension(0, 20)));
+		input.add(new JLabel("Dosage (per day): "));		input.add(dosageIn);	input.add(Box.createRigidArea(new Dimension(0, 20)));
+		input.add(new JLabel("Duration (mm/dd): "));		input.add(durationIn);	input.add(Box.createRigidArea(new Dimension(0, 20)));
+		input.add(new JLabel("Consulting Doctor: "));		input.add(doctorIn);	input.add(Box.createRigidArea(new Dimension(0, 20)));
+		input.add(new JLabel("Date of Prescription: "));	input.add(presDateIn);	input.add(Box.createRigidArea(new Dimension(0, 20)));
+		input.add(addCartB);
+		input.add(checkoutB);
+		input.add(Box.createRigidArea(new Dimension(0, 110)));
+		
+		add(Box.createRigidArea(new Dimension(100, 0)));
+		add(new JLabel(new ImageIcon("med_icon.jpg")));
+		add(Box.createRigidArea(new Dimension(50, 0)));
+		add(input);
 	}
 	
 	private class AddCartBListener implements ActionListener {

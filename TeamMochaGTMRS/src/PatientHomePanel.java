@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -26,8 +28,13 @@ public class PatientHomePanel extends JPanel {
 	public PatientHomePanel(UserView p, int u) {
 		parent = p;
 		unreadMsgs = u;
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		parent.changeHeader("Patient Home");
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		setBackground(Color.WHITE);
+		
+		JPanel input = new JPanel();
+		input.setBackground(Color.WHITE);
+		input.setLayout(new BoxLayout(input, BoxLayout.Y_AXIS));
 		
 		makeApptB = new JButton("Make Appointments");			makeApptB.addActionListener(new MakeApptListener());
 		vVisitsB = new JButton("View Visit History");			vVisitsB.addActionListener(new VisitHistoryListener());
@@ -36,13 +43,18 @@ public class PatientHomePanel extends JPanel {
 		rateDoctorB = new JButton("Rate a Doctor");				rateDoctorB.addActionListener(new RateDoctorListener());
 		editProfileB = new JButton("Edit Profile");				editProfileB.addActionListener(new EditProfListener());
 
-		add(makeApptB);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(vVisitsB);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(orderMedB);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(unreadMsgsB);	add(Box.createRigidArea(new Dimension(0, 5)));
-		add(rateDoctorB);	add(Box.createRigidArea(new Dimension(0, 5)));
-		add(editProfileB);	add(Box.createRigidArea(new Dimension(0, 5)));
-		add(Box.createRigidArea(new Dimension(0, 10)));
+		input.add(makeApptB);		input.add(Box.createRigidArea(new Dimension(0, 30)));
+		input.add(vVisitsB);		input.add(Box.createRigidArea(new Dimension(0, 30)));
+		input.add(orderMedB);		input.add(Box.createRigidArea(new Dimension(0, 30)));
+		input.add(unreadMsgsB);		input.add(Box.createRigidArea(new Dimension(0, 30)));
+		input.add(rateDoctorB);		input.add(Box.createRigidArea(new Dimension(0, 30)));
+		input.add(editProfileB);	input.add(Box.createRigidArea(new Dimension(0, 30)));
+		input.add(Box.createRigidArea(new Dimension(0, 10)));
+		
+		add(Box.createRigidArea(new Dimension(100, 0)));
+		add(new JLabel(new ImageIcon("patientIcon.png")));
+		add(Box.createRigidArea(new Dimension(50, 0)));
+		add(input);
 	}
 	
 	private class MakeApptListener implements ActionListener{

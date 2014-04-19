@@ -1,8 +1,11 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,35 +27,45 @@ public class RecordVisitPanel extends JPanel {
 	
 	public RecordVisitPanel(UserView p) {
 		parent = p;
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		parent.changeHeader("Record a Visit");
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		setBackground(Color.WHITE);
 		
-		dateIn = new JTextField();
-		pNameIn = new JTextField();
-		sysBPIn = new JTextField();
-		diaBPIn = new JTextField();
-		diagnIn = new JTextField();
-		medNameIn = new JTextField();
-		dosageIn = new JTextField();
-		durationIn = new JTextField();
-		notesIn = new JTextField();
+		JPanel input = new JPanel();
+		input.setBackground(Color.WHITE);
+		input.setLayout(new BoxLayout(input, BoxLayout.Y_AXIS));
+		
+		dateIn = new JTextField(20);		dateIn.setMaximumSize(dateIn.getPreferredSize());			dateIn.setAlignmentX(LEFT_ALIGNMENT);
+		pNameIn = new JTextField(20);		pNameIn.setMaximumSize(pNameIn.getPreferredSize());			pNameIn.setAlignmentX(LEFT_ALIGNMENT);
+		sysBPIn = new JTextField(20);		sysBPIn.setMaximumSize(sysBPIn.getPreferredSize());			sysBPIn.setAlignmentX(LEFT_ALIGNMENT);
+		diaBPIn = new JTextField(20);		diaBPIn.setMaximumSize(diaBPIn.getPreferredSize());			diaBPIn.setAlignmentX(LEFT_ALIGNMENT);
+		diagnIn = new JTextField(20);		diagnIn.setMaximumSize(diagnIn.getPreferredSize());			diagnIn.setAlignmentX(LEFT_ALIGNMENT);
+		medNameIn = new JTextField(20);		medNameIn.setMaximumSize(medNameIn.getPreferredSize());		medNameIn.setAlignmentX(LEFT_ALIGNMENT);
+		dosageIn = new JTextField(20);		dosageIn.setMaximumSize(dosageIn.getPreferredSize());		dosageIn.setAlignmentX(LEFT_ALIGNMENT);
+		durationIn = new JTextField(20);	durationIn.setMaximumSize(durationIn.getPreferredSize());	durationIn.setAlignmentX(LEFT_ALIGNMENT);
+		notesIn = new JTextField(20);		notesIn.setMaximumSize(notesIn.getPreferredSize());			notesIn.setAlignmentX(LEFT_ALIGNMENT);
 		addMedB = new JButton("Add Another Prescription");
 		submitB = new JButton("Submit");
 		
 		addMedB.addActionListener(new AddMedBListener());
 		submitB.addActionListener(new SubmitBListener());
 		
-		add(new JLabel("Date of Visit: "));		add(dateIn);
-		add(new JLabel("Patient Name: "));		add(pNameIn);
-		add(new JLabel("Systolic BP: "));		add(sysBPIn);
-		add(new JLabel("Diastolic BP: "));		add(diaBPIn);
-		add(new JLabel("Diagnosis:")); 			add(diagnIn);
-		add(new JLabel("Medication Name:")); 	add(medNameIn);
-		add(new JLabel("Dosage (per day):"));	add(dosageIn);
-		add(new JLabel("Duration (MM-DD):")); 	add(durationIn);
-		add(new JLabel("Notes:"));				add(notesIn);
-		add(addMedB);
-		add(submitB);
+		input.add(new JLabel("Date of Visit: "));		input.add(dateIn);
+		input.add(new JLabel("Patient Name: "));		input.add(pNameIn);
+		input.add(new JLabel("Systolic BP: "));			input.add(sysBPIn);
+		input.add(new JLabel("Diastolic BP: "));		input.add(diaBPIn);
+		input.add(new JLabel("Diagnosis:")); 			input.add(diagnIn);
+		input.add(new JLabel("Medication Name:")); 		input.add(medNameIn);
+		input.add(new JLabel("Dosage (per day):"));		input.add(dosageIn);
+		input.add(new JLabel("Duration (MM-DD):")); 	input.add(durationIn);
+		input.add(new JLabel("Notes:"));				input.add(notesIn);
+		input.add(addMedB);
+		input.add(submitB);
+		
+		add(Box.createRigidArea(new Dimension(100, 0)));
+		add(new JLabel(new ImageIcon("check.jpg")));
+		add(Box.createRigidArea(new Dimension(50, 0)));
+		add(input);
 	}
 	
 	private class AddMedBListener implements ActionListener {

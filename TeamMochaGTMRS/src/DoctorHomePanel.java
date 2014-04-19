@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -25,8 +27,13 @@ public class DoctorHomePanel extends JPanel{
 	public DoctorHomePanel(UserView p, int u) {
 		parent = p;
 		unreadMsgs = u;
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		parent.changeHeader("Doctor Home");
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		setBackground(Color.WHITE);
+		
+		JPanel input = new JPanel();
+		input.setBackground(Color.WHITE);
+		input.setLayout(new BoxLayout(input, BoxLayout.Y_AXIS));
 		
 		viewApptCalB = new JButton("View Appointment Calendar");	viewApptCalB.addActionListener(new ViewApptCalListener());
 		patientVisitsB = new JButton("Patient Visits");				patientVisitsB.addActionListener(new PatientVisitsListener());
@@ -34,12 +41,17 @@ public class DoctorHomePanel extends JPanel{
 		unreadMsgsB = new JButton("Messages" + "(" + u + ")");		unreadMsgsB.addActionListener(new UnreadMsgListener());
 		editProfileB= new JButton("Edit Profile");					editProfileB.addActionListener(new EditProfListener());
 
-		add(viewApptCalB);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(patientVisitsB);	add(Box.createRigidArea(new Dimension(0, 5)));
-		add(recordSurgeryB);	add(Box.createRigidArea(new Dimension(0, 5)));
-		add(unreadMsgsB);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(editProfileB);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(Box.createRigidArea(new Dimension(0, 10)));
+		input.add(viewApptCalB);		input.add(Box.createRigidArea(new Dimension(0, 30)));
+		input.add(patientVisitsB);		input.add(Box.createRigidArea(new Dimension(0, 30)));
+		input.add(recordSurgeryB);		input.add(Box.createRigidArea(new Dimension(0, 30)));
+		input.add(unreadMsgsB);			input.add(Box.createRigidArea(new Dimension(0, 30)));
+		input.add(editProfileB);		input.add(Box.createRigidArea(new Dimension(0, 30)));
+		input.add(Box.createRigidArea(new Dimension(0, 10)));
+		
+		add(Box.createRigidArea(new Dimension(100, 0)));
+		add(new JLabel(new ImageIcon("doctorIcon.png")));
+		add(Box.createRigidArea(new Dimension(50, 0)));
+		add(input);
 	}
 	
 	private class ViewApptCalListener implements ActionListener{

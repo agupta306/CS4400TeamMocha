@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -32,36 +33,46 @@ public class PatientProfilePanel extends JPanel{
 	
 	public PatientProfilePanel(UserView p, String n, String d, String g, String a, String hP, String wP, String w, String h, String i, String all) {
 		parent = p;
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		parent.changeHeader("Patient Profile");
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		setBackground(Color.WHITE);
 
-		nameIn = new JTextField(n, 20);						nameIn.setAlignmentX(Component.LEFT_ALIGNMENT);
-		dobIn = new JTextField(d, 20);						dobIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		JPanel input = new JPanel();
+		input.setBackground(Color.WHITE);
+		input.setLayout(new BoxLayout(input, BoxLayout.Y_AXIS));
+		
+		nameIn = new JTextField(n, 20);					nameIn.setMaximumSize(nameIn.getPreferredSize());			nameIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		dobIn = new JTextField(d, 20);					dobIn.setMaximumSize(dobIn.getPreferredSize());				dobIn.setAlignmentX(Component.LEFT_ALIGNMENT);
 		genderIn = new JComboBox(new String[]{"Male", "Female"});												
-		genderIn.setSelectedItem(g);						genderIn.setAlignmentX(Component.LEFT_ALIGNMENT);
-		addressIn = new JTextField(a, 20);					addressIn.setAlignmentX(Component.LEFT_ALIGNMENT);										addressIn.setAlignmentX(Component.LEFT_ALIGNMENT);
-		homePhoneIn = new JTextField(hP, 20);				homePhoneIn.setAlignmentX(Component.LEFT_ALIGNMENT);
-		workPhoneIn = new JTextField(wP, 20);				workPhoneIn.setAlignmentX(Component.LEFT_ALIGNMENT);
-		weightIn = new JTextField(w, 20);					weightIn.setAlignmentX(Component.LEFT_ALIGNMENT);
-		heightIn = new JTextField(h, 20);					heightIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		genderIn.setSelectedItem(g);					genderIn.setMaximumSize(genderIn.getPreferredSize());		genderIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		addressIn = new JTextField(a, 20);				addressIn.setMaximumSize(addressIn.getPreferredSize());		addressIn.setAlignmentX(Component.LEFT_ALIGNMENT);										addressIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		homePhoneIn = new JTextField(hP, 20);			homePhoneIn.setMaximumSize(homePhoneIn.getPreferredSize());	homePhoneIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		workPhoneIn = new JTextField(wP, 20);			workPhoneIn.setMaximumSize(workPhoneIn.getPreferredSize());	workPhoneIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		weightIn = new JTextField(w, 20);				weightIn.setMaximumSize(weightIn.getPreferredSize());		weightIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		heightIn = new JTextField(h, 20);				heightIn.setMaximumSize(heightIn.getPreferredSize());		heightIn.setAlignmentX(Component.LEFT_ALIGNMENT);
 		incomeIn = new JComboBox(new String[]{"100000+", "50000 - 100000", "25000 - 50000", "0 - 25000"});		
-		incomeIn.setSelectedItem(i);						incomeIn.setAlignmentX(Component.LEFT_ALIGNMENT);
-		allergiesIn = new JTextField(all, 20);				allergiesIn.setAlignmentX(Component.LEFT_ALIGNMENT);
-		submitB = new JButton("Submit");					submitB.setAlignmentX(Component.LEFT_ALIGNMENT);
+		incomeIn.setSelectedItem(i);					incomeIn.setMaximumSize(incomeIn.getPreferredSize());		incomeIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		allergiesIn = new JTextField(all, 20);			allergiesIn.setMaximumSize(allergiesIn.getPreferredSize());	allergiesIn.setAlignmentX(Component.LEFT_ALIGNMENT);
+		submitB = new JButton("Submit");				submitB.setAlignmentX(Component.LEFT_ALIGNMENT);
 		submitB.addActionListener(new SubmitBListener());
 	
-		add(new JLabel("Patient Name: "));					add(nameIn);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(new JLabel("Date of Birth: "));					add(dobIn);			add(Box.createRigidArea(new Dimension(0, 5)));
-		add(new JLabel("Gender: "));						add(genderIn);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(new JLabel("Address: "));						add(addressIn);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(new JLabel("Home Phone (###-###-####): "));		add(homePhoneIn);	add(Box.createRigidArea(new Dimension(0, 5)));
-		add(new JLabel("Work Phone (###-###-####): "));		add(workPhoneIn);	add(Box.createRigidArea(new Dimension(0, 5)));
-		add(new JLabel("Weight (lbs):"));					add(weightIn);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(new JLabel("Height (in):"));					add(heightIn);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(new JLabel("Annual Income ($):"));				add(incomeIn);		add(Box.createRigidArea(new Dimension(0, 5)));
-		add(new JLabel("Allergies (dairy, pollen, ...):"));	add(allergiesIn);	add(Box.createRigidArea(new Dimension(0, 5)));
-		add(submitB);
-		add(Box.createRigidArea(new Dimension(0, 10)));
+		input.add(new JLabel("Patient Name: "));					input.add(nameIn);		input.add(Box.createRigidArea(new Dimension(0, 5)));
+		input.add(new JLabel("Date of Birth: "));					input.add(dobIn);		input.add(Box.createRigidArea(new Dimension(0, 5)));
+		input.add(new JLabel("Gender: "));							input.add(genderIn);	input.add(Box.createRigidArea(new Dimension(0, 5)));
+		input.add(new JLabel("Address: "));							input.add(addressIn);	input.add(Box.createRigidArea(new Dimension(0, 5)));
+		input.add(new JLabel("Home Phone (###-###-####): "));		input.add(homePhoneIn);	input.add(Box.createRigidArea(new Dimension(0, 5)));
+		input.add(new JLabel("Work Phone (###-###-####): "));		input.add(workPhoneIn);	input.add(Box.createRigidArea(new Dimension(0, 5)));
+		input.add(new JLabel("Weight (lbs):"));						input.add(weightIn);	input.add(Box.createRigidArea(new Dimension(0, 5)));
+		input.add(new JLabel("Height (in):"));						input.add(heightIn);	input.add(Box.createRigidArea(new Dimension(0, 5)));
+		input.add(new JLabel("Annual Income ($):"));				input.add(incomeIn);	input.add(Box.createRigidArea(new Dimension(0, 5)));
+		input.add(new JLabel("Allergies (dairy, pollen, ...):"));	input.add(allergiesIn);	input.add(Box.createRigidArea(new Dimension(0, 5)));
+		input.add(submitB);
+		input.add(Box.createRigidArea(new Dimension(0, 10)));
+		
+		add(Box.createRigidArea(new Dimension(100, 0)));
+		add(new JLabel(new ImageIcon("editProf.png")));
+		add(Box.createRigidArea(new Dimension(50, 0)));
+		add(input);
 	}
 	
 	private class SubmitBListener implements ActionListener {

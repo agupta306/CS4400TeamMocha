@@ -1,8 +1,11 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -24,40 +27,35 @@ public class ViewVisitHistoryPanel extends JPanel{
 	
 	public ViewVisitHistoryPanel(UserView p) {
 		parent = p;
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		parent.changeHeader("View Visit History");
+		setLayout(new BorderLayout());
 		setBackground(Color.WHITE);
+		setUpTable(320);
 		
-		//TODO: Populate datesOfVisitsCB with past dates from dbc
-		datesOfVisitsCB = new JComboBox(new String[]{"09/22/12", "10/23/12", "3/29/14"});
-		datesOfVisitsCB.addActionListener(new DateChangeListener());
-		datesOfVisitsCB.setAlignmentX(Component.LEFT_ALIGNMENT);
-		bp = new JLabel();			bp.setAlignmentX(Component.LEFT_ALIGNMENT);
-		diagnosis = new JLabel();	diagnosis.setAlignmentX(Component.LEFT_ALIGNMENT);
-
-		m = new DefaultTableModel();
-		medPresT = new JTable(m);
-		
-		updateContents();
-		
+		JPanel requestP = new JPanel();
+		requestP.setLayout(new BoxLayout(requestP, BoxLayout.X_AXIS));
+		requestP.setBackground(Color.WHITE);
+		requestP.setPreferredSize(new Dimension(800, 50));
 		returnB = new JButton("Return Home");
 		returnB.addActionListener(new ReturnBListener());
-		
-		add(new JLabel("Dates of Visits: "));	add(datesOfVisitsCB);
-		add(bp);
-		add(diagnosis);
-		add(new JLabel("Medications Prescribed:"));
-		add(new JScrollPane(medPresT));
-		add(returnB);
+		requestP.add(Box.createRigidArea(new Dimension(325, 50)));
+		requestP.add(returnB);
+		add(requestP, BorderLayout.SOUTH);
 	}
 	
 	public ViewVisitHistoryPanel(ViewPatientVisitsPanel p) {
 		this.p = p;
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setLayout(new BorderLayout());
 		setBackground(Color.WHITE);
-		
+		setUpTable(50);
+	}
+	
+	
+	private void setUpTable(int num) {
 		//TODO: Populate datesOfVisitsCB with past dates from dbc
 		datesOfVisitsCB = new JComboBox(new String[]{"09/22/12", "10/23/12", "3/29/14"});
 		datesOfVisitsCB.addActionListener(new DateChangeListener());
+		datesOfVisitsCB.setMaximumSize(datesOfVisitsCB.getPreferredSize());
 		datesOfVisitsCB.setAlignmentX(Component.LEFT_ALIGNMENT);
 		bp = new JLabel();			bp.setAlignmentX(Component.LEFT_ALIGNMENT);
 		diagnosis = new JLabel();	diagnosis.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -67,12 +65,30 @@ public class ViewVisitHistoryPanel extends JPanel{
 		
 		updateContents();
 		
-		add(new JLabel("Dates of Visits: "));	add(datesOfVisitsCB);
-		add(bp);
-		add(diagnosis);
-		add(new JLabel("Medications Prescribed:"));
-		add(new JScrollPane(medPresT));
+		JPanel input = new JPanel();
+		input.setBackground(Color.WHITE);
+		input.setLayout(new BoxLayout(input, BoxLayout.X_AXIS));
+		input.add(Box.createRigidArea(new Dimension(num, 50)));
+		input.add(new JLabel("Dates of Visits: "));
+		input.add(datesOfVisitsCB);
+		
+		JPanel data = new JPanel();
+		data.setBackground(Color.WHITE);
+		data.setLayout(new BorderLayout());
+		JPanel d = new JPanel();
+		d.setBackground(Color.WHITE);
+		d.setLayout(new BoxLayout(d, BoxLayout.Y_AXIS));
+		d.add(bp);
+		d.add(diagnosis);
+		d.add(Box.createRigidArea(new Dimension(100, 20)));
+		d.add(new JLabel("Medications Prescribed:"));
+		data.add(d, BorderLayout.NORTH);
+		data.add(new JScrollPane(medPresT), BorderLayout.CENTER);
+		
+		add(input, BorderLayout.NORTH);
+		add(data, BorderLayout.CENTER);
 	}
+	
 	
 	//Based on either UserView's username or ViewPatientVisitsPanel's selected patient username
 	public void updateContents() {
