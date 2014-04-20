@@ -69,18 +69,18 @@ public class CreateTables {
 			"'aanderson', 'wphong', '2014-04-18', 160.00, 80, 118",
 			"'abloom', 'jlovato', '2014-03-03',	120.00,	78,	115",
 			"'abloom', 'jlovato', '2014-03-10',	120.00,	80,	112",
-			"'abloom', 'jlovato', '2014-03-17',	120.00,	76,	110",
-			"'acook', 'cyoung', '2014-02-03', 120.00, 73, 100",
-			"'acook', 'cyoung', '2014-02-25', 120.00, 77, 101",
+			"'abloom', 'jlovato', '2014-03-17',	595.00,	76,	110",
+			"'acook', 'cyoung', '2014-02-03', 370.00, 73, 100",
+			"'acook', 'cyoung', '2014-02-25', 370.00, 77, 101",
 			"'acook', 'cyoung', '2014-03-25', 120.00, 75, 100",
 			"'bhunt', 'ltorres', '2014-01-13', 160.00, 81, 120",
-			"'bhunt', 'ltorres', '2014-01-28', 120.00, 89, 125",
+			"'bhunt', 'ltorres', '2014-01-28', 620.00, 89, 125",
 			"'bhunt', 'mhall3', '2014-01-22', 120.00, 72, 104",
 			"'cmartin', 'cyoung', '2014-03-07',	160.00,	73,	115",
 			"'cmartin', 'jconley', '2014-01-13', 200.00, 70, 105",
 			"'cmartin', 'wphong', '2014-04-01',	120.00,	80,	120",
 			"'evanmae', 'mhall3', '2014-02-22',	120.00,	75,	104",
-			"'evanmae', 'mhall3', '2014-03-21',	120.00,	73,	105",
+			"'evanmae', 'mhall3', '2014-03-21',	585.00,	73,	105",
 			"'evanmae', 'mhall3', '2014-04-18',	120.00,	74,	101",
 			"'gwells', 'jlovato', '2014-02-19', 120.00,	74,	118",
 			"'gwells', 'jlovato', '2014-03-12',	120.00,	75,	116",
@@ -90,10 +90,10 @@ public class CreateTables {
 			"'hwood', 'wphong', '2014-04-03', 160.00, 80, 118",
 			"'jmaine', 'ltorres', '2014-02-09',	120.00,	74,	116",
 			"'jmaine', 'mwilliams', '2014-02-04', 150.00, 79, 119",
-			"'jmaine', 'sward', '2014-02-11', 160.00, 79, 120",
+			"'jmaine', 'sward', '2014-02-11', 760.00, 79, 120",
 			"'nmartell', 'mhall3', '2014-03-06', 120.00, 71, 105",
-			"'nmartell', 'phumming', '2014-02-28', 120.00, 79, 120",
-			"'nmartell', 'phumming', '2014-04-08', 120.00, 80, 121",
+			"'nmartell', 'phumming', '2014-02-28', 570.00, 79, 120",
+			"'nmartell', 'phumming', '2014-04-08', 570.00, 80, 121",
 			"'rtrap', 'ltorres', '2014-01-14', 120.00, 75, 121",
 			"'rtrap', 'ltorres', '2014-02-14', 120.00, 73, 118",
 			"'rtrap', 'mwilliams', '2014-03-25', 150.00, 79, 118",
@@ -101,20 +101,20 @@ public class CreateTables {
 			"'sholmes', 'mwilliams', '2014-02-21', 150.00, 75, 115",
 			"'sholmes', 'mwilliams', '2014-03-21', 150.00, 75, 114",
 			"'smartinez', 'apuck', '2014-03-02', 120.00, 74, 103",
-			"'smartinez', 'mwilliams', '2014-01-25', 150.00, 73, 122",
+			"'smartinez', 'mwilliams', '2014-01-25', 1350.00, 73, 122",
 			"'smartinez', 'mwilliams', '2014-02-25', 670.00, 80, 117",
 			"'swright', 'apuck', '2014-03-06', 475.00, 73, 105",
 			"'swright', 'apuck', '2014-03-20', 475.00, 79, 103",
 			"'swright', 'apuck', '2014-03-31', 120.00, 78, 107",
 			"'tsmith', 'apuck', '2014-02-05', 160.00, 80, 110",
 			"'tsmith', 'phumming', '2014-02-19', 160.00, 79, 118",
-			"'tsmith', 'phumming', '2014-03-26', 120.00, 79, 119",
+			"'tsmith', 'phumming', '2014-03-26', 620.00, 79, 119",
 			"'vpalacio', 'mwilliams', '2014-03-07',	150.00,	75,	115",
 			"'vpalacio', 'sward', '2014-03-20',	120.00,	76,	119",
-			"'vpalacio', 'sward', '2014-04-03',	120.00,	78,	120",
+			"'vpalacio', 'sward', '2014-04-03',	477.50,	78,	120",
 			"'ysmith', 'mhall3', '2014-04-10', 120.00, 70, 101",
 			"'ysmith', 'sward', '2014-04-01', 120.00, 78, 121",
-			"'ysmith', 'sward', '2014-04-08', 120.00, 78, 118"			
+			"'ysmith', 'sward', '2014-04-08', 380.00, 78, 118"			
 	};
 	
 	private String[] paymentInfo = {"'5478-4802-9258-4310', 'Jonathan Conley', 'MasterCard', '2016-09-01', '657'",
@@ -162,28 +162,90 @@ public class CreateTables {
 			"'ysmith', 'sward', '2014-04-01', 'Ibuprofen 800mg', 3,	14,	'Take one tablet by mouth every 8 hours', 'y'"
 	};
 	
-	private String[] surgeries = {"'27580', 'Arthrodesis, knee surgery', 800.00",
-			"'92920', 'Percutaneous transluminal coronary angioplasty', 520.00",
-			"'67930', 'Eyelid repair surgery on left eye', 360.00",
-			"'66999', 'Phototherapeutic keratectomy on both eyes', 710.00",
-			"'65750', 'Lasik refractive surgery on both eyes', 710.00"
+	private String[] diagnoses = {"'jcates', 'mhall3', '2014-01-21', 'Flu'",
+			"'aanderson', 'jlovato', '2014-01-13', 'Sprained muscle in lower back'",
+			"'aanderson', 'wphong', '2014-04-18', 'Sprained muscle in wrist'",
+			"'abloom', 'jlovato', '2014-03-03',	'Depression'",
+			"'acook', 'cyoung', '2014-02-03', 'Sprained muscle in ankle'",
+			"'bhunt', 'ltorres', '2014-01-13', 'High cholesterol'",
+			"'bhunt', 'mhall3', '2014-01-22', 'High cholesterol'",
+			"'evanmae', 'mhall3', '2014-02-22',	'Eye infection'",
+			"'gwells', 'jlovato', '2014-03-12',	'Eye infection'",
+			"'gwells', 'mwilliams', '2014-01-24', 'Eye infection'",
+			"'hwood', 'jconley', '2014-04-18', 'Dry eyes'",
+			"'hwood', 'mhall3', '2014-04-11', 'Dry eyes'",
+			"'hwood', 'wphong', '2014-04-03', 'Dry eyes'",
+			"'jmaine', 'ltorres', '2014-02-09',	'Severe headaches'",
+			"'jmaine', 'mwilliams', '2014-02-04', 'Severe headaches'",
+			"'jmaine', 'sward', '2014-02-11', 'Severe headaches'",
+			"'nmartell', 'mhall3', '2014-03-06', 'Severe headaches'",
+			"'nmartell', 'phumming', '2014-02-28', 'Severe headaches'",
+			"'rtrap', 'ltorres', '2014-01-14','Severe muscle strain in lower back'",
+			"'rtrap', 'mwilliams', '2014-03-25', 'Severe muscle strain in left leg'",
+			"'sholmes', 'mwilliams', '2014-02-21', 'Muscle strain in left leg'",
+			"'tsmith', 'phumming', '2014-02-19', 'High cholesterol'",
+			"'tsmith', 'apuck', '2014-02-05', 'High cholesterol'",
+			"'vpalacio', 'mwilliams', '2014-03-07',	'Ear infection'",
+			"'vpalacio', 'sward', '2014-03-20',	'Ear infection'",
+			"'ysmith', 'mhall3', '2014-04-10', 'Fungal infection'",
+			"'ysmith', 'sward', '2014-04-01', 'Cluster headaches'"
+			
 	};
 	
-	private String[] preopMeds = {"'27580', 'Diazepam'",
+	private String[] surgeries = {"'31502', 'Trauma surgery: tracheostomy', 800.00",
+			"'92920', 'Percutaneous transluminal coronary angioplasty', 520.00",
+			"'67930', 'Eyelid repair surgery', 360.00",
+			"'66999', 'Phototherapeutic keratectomy', 710.00",
+			"'43641', 'Lasik refractive surgery', 710.00",
+			"'49000', 'Exploratory laparotomy', 450.00",
+			"'49010', 'Therapeutic laparotomy: peptic ulcer removal', 450.00",
+			"'33510', 'Coronary artery bypass grafting', 1200.00",
+			"'27580', 'Arthrodesis: knee surgery', 520.00",
+			"'29891', 'Arthroscopy: ankle; excision of osteochondral defect', 500.00",
+			"'29899', 'Arthroscopy: ankle; with ankle arthrodesis', 500.00",
+			"'61490', 'Bilateral cingulotomy', 950.00",
+			"'61720', 'Subcaudate tractotomy', 1000.00",
+			"'58570', 'Laparoscopic hysterectomy', 930.00",
+			"'58353', 'Endometrial ablation', 715.00"
+	};
+	
+	private String[] preopMeds = {"'29891', 'Diazepam'",
 			"'27580', 'Atropine'",
-			"'65750', 'Gentamicin eyedrops'",
 			"'66999', 'Gentamicin eyedrops'",
-			"'92920', 'Ondansetron'",
-			"'92920', 'Chlorpromazine'",
-			"'67930', 'Lorazepam'"
+			"'92920', 'Nitroglycerin'",
+			"'92920', 'Ticlopidine'",
+			"'92920', 'Aspirin'",
+			"'67930', 'Lorazepam'",
+			"'49000', 'Lorazepam'",
+			"'49010', 'Lorazepam'",
+			"'33510', 'Nitroglycerin'",
+			"'33510', 'Ticlopidine'",
+			"'29899', 'Diazepam'",
+			"'61490', 'Phenytoin'",
+			"'61720', 'Phenobarbital'",
+			"'61720', 'Carbamazepine'",
+			"'58570', 'Antiemetic'",
+			"'58353', 'Antiemetic'"
 	};
 
-	private String[] performs = {"'jcates', 'mhall3', '27580', 2, '9:00:00', '10:07:00', '8:45:00', 'None'",
+	private String[] performs = {"'jcates', 'mhall3', '31502', 2, '9:00:00', '10:07:00', '8:45:00', 'None'",
 			"'aanderson', 'jlovato', '67930', 1, '10:13:00', '10:57:00', '10:03:00', 'None'",
 			"'smartinez', 'mwilliams', '92920', 1, '8:25:00', '11:14:01', '8:15:00', 'None'",
-			"'swright', 'apuck', '65750', 2, '13:00:00', '14:37:00', '12:50:00', 'None'",
-			"'swright', 'apuck', '66999', 1, '13:00:00', '14:58:01', '12:50:01', 'None'"
-			
+			"'swright', 'apuck', '67930', 2, '13:00:00', '14:37:00', '12:50:00', 'None'",
+			"'swright', 'apuck', '66999', 1, '13:00:00', '14:58:01', '12:50:01', 'None'",
+			"'nmartell', 'phumming', '49000', 2, '8:32:00', '11:57:00', '8:22:00', 'None'",
+			"'nmartell', 'phumming', '49010', 2, '7:17:00', '9:32:00', '7:07:00', 'None'",
+			"'smartinez', 'mwilliams', '33510', 3, '9:10:00', '11:47:00', '9:00:00', 'None'",
+			"'jmaine', 'sward', '33510', 1,	'1:10:00', '2:14:00', '1:00:00', 'None'",
+			"'ysmith', 'sward', '27580', 1,	'3:17:00', '4:03:00', '3:07:00', 'None'",
+			"'acook', 'cyoung', '29891', 2,	'11:27:00', '13:19:00', '11:17:00', 'None'",
+			"'acook', 'cyoung', '29899', 2,	'9:07:00', '10:17:00', '8:57:00', 'None'",
+			"'abloom', 'jlovato', '61490', 2, '8:30:00', '10:47:00', '8:20:00', 'None'",
+			"'bhunt', 'ltorres', '61720', 2, '8:30:00', '10:31:00', '8:20:01', 'None'",
+			"'tsmith', 'phumming', '61720', 2, '8:13:00', '10:05:00', '8:03:00', 'None'",
+			"'evanmae', 'mhall3', '58570', 1, '8:24:00', '9:45:00', '8:14:00', 'None'",
+			"'gwells', 'jlovato', '58570', 1, '13:14:00', '14:39:00', '13:04:00', 'None'",
+			"'vpalacio', 'sward', '58353', 1, '15:22:00', '16:55:00', '15:09:00', 'None'"	
 	};
 	
 	private String[] messagesToDoc = {"'aanderson', 'wphong', '2014-04-18 23:11:00', 'Hi Dr. Anderson: Am I supposed to take the ibuprofen after dinner?', 'u'",
@@ -218,11 +280,11 @@ public class CreateTables {
 		//insertDummyData(surgeries, "surgery");
 		//insertDummyData(preopMeds, "preoperative_medications");
 		//insertDummyData(performs, "performs");
-		
-		insertDummyData(messagesToDoc, "send_message_to_doc");
+		//insertDummyData(diagnoses, "diagnosis");
+		//insertDummyData(messagesToDoc, "send_message_to_doc");
 		//insertDummyData(messagesToPatient, "send_message_to_pat");
-		
 		//insertDummyData(docToDocMessages, "communicates_with");
+
 		makeQuery();	
 	}
 	
@@ -259,6 +321,19 @@ public class CreateTables {
 	        if (stmt != null) { stmt.close(); }
 	    }	
 	}	
+	
+	public void deleteAllTuples(String tableName) throws SQLException {
+	    stmt = null;
+	    try {
+	        stmt = conn.createStatement();
+        	stmt.executeUpdate("delete from " + tableName );
+	    } catch (SQLException e) {
+	        System.out.println("Error: Could not delete tuples from tables. Connection to database failed!");
+	        e.printStackTrace();
+	    } finally {
+	        if (stmt != null) { stmt.close(); }
+	    }		
+	}
 	
 	public void makeQuery() throws SQLException {
 		Statement stmt = null;
