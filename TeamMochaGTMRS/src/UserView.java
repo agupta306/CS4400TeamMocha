@@ -28,7 +28,7 @@ import javax.swing.JTextField;
  * @author Ashutosh Gupta
  */
 public class UserView extends JFrame{
-	private DBConnector dbc;
+	private CreateTables dbc;
 	private JPanel parentPanel;
 	private JPanel contentPanel;
 	private JPanel headPanel;
@@ -98,7 +98,7 @@ public class UserView extends JFrame{
 	
 	public void startDBC() {
 		try {
-			dbc = new DBConnector();
+			dbc = new CreateTables();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(this, "Error: Could not connect to CS4400 Group 1 database!");
             e.printStackTrace();

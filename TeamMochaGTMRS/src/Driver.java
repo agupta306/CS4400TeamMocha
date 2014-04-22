@@ -2,7 +2,7 @@ import javax.swing.JFrame;
 
 /**
  * Kick-starter of GTMRs Application
- * Sets up UserView and starts DBConnector
+ * Sets up UserView and starts CreateTables
  * @author Ashutosh Gupta
  */
 public class Driver {

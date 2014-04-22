@@ -54,34 +54,30 @@ public class WelcomePanel extends JPanel {
 	
 	private class LoginBListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			//Construct login dialog
 			JPanel p = new JPanel();
 			p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-			
 			JTextField usernameIn = new JTextField(20);		usernameIn.setMaximumSize(usernameIn.getPreferredSize());
 			JTextField passwordIn = new JPasswordField(20); passwordIn.setMaximumSize(passwordIn.getPreferredSize());
-			
 			usernameIn.setAlignmentX(Component.LEFT_ALIGNMENT);
 			passwordIn.setAlignmentX(Component.LEFT_ALIGNMENT);
-			
 			p.add(new JLabel("Username: "));
 			p.add(usernameIn);
 			p.add(new JLabel("Password: "));
 			p.add(passwordIn);
+			int result = JOptionPane.showConfirmDialog(parent, p, "User Login", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 			
-			JOptionPane.showMessageDialog(parent, p, "User Login", JOptionPane.QUESTION_MESSAGE, new ImageIcon("drBuzz.png"));
-			
-			if(usernameIn.getText().equals("") || passwordIn.getText().equals(""))
-				parent.errorMessage("Please fill in all fields");
-			else {
-				int check = -1;
-				// TODO: Send queries to dbc to confirm username/password
-				// TODO: Retrieve type of user (0 - patient, 1 - doctor, 2 - admin, -1 - error)
-				check = 2;
-				if(check == -1)
-					parent.errorMessage("Incorrect Username/Password. Please try again.");
+			if(result == JOptionPane.OK_OPTION) {
+				if(usernameIn.getText().equals("") || passwordIn.getText().equals(""))			//Check for syntactic errors on GUI-side
+						parent.errorMessage("Please fill in all fields");
 				else {
-					parent.setUsername(usernameIn.getText());
-					parent.goToHomePage(check);
+					int check = Queries.login(usernameIn.getText(), passwordIn.getText());		//Check for semantic errors on databse-side
+					if(check == -1)
+						parent.errorMessage("Invalid Username/Password combination. Please try again.");
+					else {
+						parent.setUsername(usernameIn.getText());
+						parent.goToHomePage(check);
+					}
 				}
 			}
 		}
